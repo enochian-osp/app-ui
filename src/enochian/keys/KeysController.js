@@ -8,8 +8,8 @@ import Radio from '@material-ui/core/Radio';
 import AppBar from '../../AppBar';
 import Keys from './Keys';
 
-import EnochianKeys from './keys.data.js';
-import dictionary from '../dictionary.json';
+import EnochianKeys from '../enochian-data/keys.data.js';
+import dictionary from '../enochian-data/dictionary.json';
 
 const CONFIG_ENOCHIAN_PERSONAL_KEY = 'enochian_personalKey';
 

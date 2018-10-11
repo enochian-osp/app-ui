@@ -7,7 +7,7 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Typography from '@material-ui/core/Typography';
 
-import EnochianKeys from './keys.data.js';
+import EnochianKeys from '../enochian-data/keys.data.js';
 import '../enochianFont.js';
 
 const s = {

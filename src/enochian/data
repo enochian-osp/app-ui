@@ -1,0 +1,5 @@
+#!/bin/sh
+for file in dictionary/dictionary.json keys/keys.data.js letters/letters.json ; do
+	cp ~/www/projects/enochian/data/$file enochian-data
+done
+
