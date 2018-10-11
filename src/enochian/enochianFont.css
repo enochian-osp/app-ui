@@ -1,0 +1,7 @@
+@font-face {
+  font-family: 'enochianplain';
+  src: url('./font/enochian-webfont.woff2') format('woff2'),
+     url('./font/enochian-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}

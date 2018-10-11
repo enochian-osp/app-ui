@@ -2,25 +2,27 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import CssBaseline from '@material-ui/core/CssBaseline';
+
+import { BrowserRouter, Route } from 'react-router-dom'
+
+import Enochian from './enochian/Enochian';
+import EnochianOration from './enochian/Oration';
+import EnochianKeys from './enochian/keys/KeysController';
+
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <React.Fragment>
+        <CssBaseline />
+        <BrowserRouter>
+          <React.Fragment>
+            <Route exact path='/' component={Enochian} />
+            <Route exact path='/keys' component={EnochianKeys} />
+            <Route exact path='/oration' component={EnochianOration} />
+          </React.Fragment>
+        </BrowserRouter>
+      </React.Fragment>
     );
   }
 }

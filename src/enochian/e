@@ -1,0 +1,4 @@
+#!/bin/sh
+cp ~/www/projects/enochian/dictionary/dictionary.json .
+cp ~/www/projects/enochian/keys/keys.data.js keys
+
