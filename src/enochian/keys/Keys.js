@@ -44,7 +44,7 @@ const Layouts = {
   },
 
   english: ({ Key, selectKey, selectedKey }) => (
-    <Typography style={s.keyParagraph}>
+    <Typography variant="body1" style={s.keyParagraph}>
       {
         Key.subkeys.map(subkey => (
           <span
@@ -58,7 +58,7 @@ const Layouts = {
   ),
 
   enochian: ({ Key, enochianFont, selectKey, selectedKey }) => (
-    <Typography style={{...s.keyParagraph, fontFamily: enochianFont ? 'enochianplain' : ''}}>
+    <Typography variant="body1"  style={{...s.keyParagraph, fontFamily: enochianFont ? 'enochianplain' : ''}}>
       {
         Key.subkeys.map(subkey => (
           <span
@@ -101,7 +101,7 @@ const Keys = ({ layout, enochianFont, selectKey, selectedKey, kotd, open, toggle
 const Key = pure(({ keyData, Layout, enochianFont, selectKey, selectedKey, kotd, isPersonal, expanded, onChange }) => (
   <ExpansionPanel expanded={expanded} onChange={onChange}>
     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-      <Typography>
+      <Typography variant="body1">
         Key {keyData.key}
         {
           (kotd ? ' (KotD)' : '') +

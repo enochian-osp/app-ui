@@ -38,7 +38,7 @@ const MyAppBar = ({ classes, title, navPos }) => (
         <IconButton className={classes.menuButton} color="inherit" aria-label="Home" component={Link} to="/">
           <HomeIcon />
         </IconButton>
-        <Typography variant="title" color="inherit" className={classes.flex}>
+        <Typography variant="h6" color="inherit" className={classes.flex}>
           {navPos ? <TitleLink classes={classes} navPos={navPos} /> : null}
           {title}
         </Typography>
