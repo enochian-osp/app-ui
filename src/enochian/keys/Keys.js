@@ -22,7 +22,7 @@ const s = {
 const Layouts = {
 
   book: ({ Key, enochianFont, selectKey, selectedKey }) => {
-    const enochianStyle = enochianFont ? { fontFamily: 'enochianplain' } : null;
+    const enochianClass = enochianFont ? 'enochianFont' : null;
 
     return (
       <table>
@@ -33,7 +33,7 @@ const Layouts = {
                   onClick={selectKey(Key.key,subkey.subkey)}
                   style={selectedKey.key===Key.key&&selectedKey.subkey===subkey.subkey?s.selectedKey:null}>
                 <td>{Key.key}.{subkey.subkey}</td>
-                <td style={enochianStyle}>{subkey.enochianLatin}</td>
+                <td className={enochianClass}>{subkey.enochianLatin}</td>
                 <td>{subkey.english}</td>
               </tr>
             ))
@@ -58,7 +58,7 @@ const Layouts = {
   ),
 
   enochian: ({ Key, enochianFont, selectKey, selectedKey }) => (
-    <Typography variant="body1"  style={{...s.keyParagraph, fontFamily: enochianFont ? 'enochianplain' : ''}}>
+    <Typography variant="body1"  style={s.keyParagraph} className='enochianFont'>
       {
         Key.subkeys.map(subkey => (
           <span

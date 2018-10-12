@@ -56,9 +56,6 @@ const s = {
   setPersonalKey: {
     padding: 22
   },
-  enochianFont: {
-    fontFamily: 'enochianplain'
-  },
   dictionary: {
     padding: 22,
     background: 'rgba(0,0,0,0.9)',
@@ -73,7 +70,7 @@ const FontButton = ({ enochianFont, toggleFont }) => (
   <Button onClick={toggleFont}>
     <span style={{color:enochianFont?'':'red'}}>A</span>
     &nbsp;
-    <span style={{...s.enochianFont,color:enochianFont?'red':''}}>A</span>
+    <span className="enochianFont" style={{color:enochianFont?'red':''}}>A</span>
   </Button>
 );
 
@@ -85,9 +82,9 @@ const Dictionary = ({ Key, subkey }) => {
     <table width="100%">
       <tbody>
         <tr>
-          <td style={{...s.enochianFont,textAlign:'left',width:'33%'}}>{sub.enochianLatin}</td>
-          <td style={{textAlign:'center',width:'33%'}}>{sub.enochianLatin}</td>
-          <td style={{width:'33%',textAlign:'right'}}>{dict.pronounciations.length&&dict.pronounciations[0].pronounciation}</td>
+          <td style={{width:'33%', textAlign:'left'}}>{sub.enochianLatin}</td>
+          <td style={{width:'33%',textAlign:'center'}}>{dict.pronounciations.length&&dict.pronounciations[0].pronounciation}</td>
+          <td style={{width:'33%',textAlign:'right'}} className="enochianFont">{sub.enochianLatin}</td>
         </tr>
         {
           dict.meanings.map((meaning, i) => (

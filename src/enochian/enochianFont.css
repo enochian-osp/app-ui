@@ -5,3 +5,9 @@
   font-weight: normal;
   font-style: normal;
 }
+
+.enochianFont {
+  font-family: enochianplain !important;
+  direction: rtl;
+  unicode-bidi: bidi-override;
+}

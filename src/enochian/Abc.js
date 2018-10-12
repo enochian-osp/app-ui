@@ -20,7 +20,6 @@ const s = {
   },
   letter: {
     fontSize: '400%',
-    fontFamily: 'enochianplain',
     textAlign: 'center',
     padding: '20px',
   },
@@ -110,7 +109,7 @@ const AbcUnstyled = ({ question, classes }) => (
     <AppBar navPos={null/*navPos*/} title="Practice ABC" />
 
     <div style={s.questionBox}>
-      <div style={s.letter}>{question.question}</div>
+      <div style={s.letter} className="enochianFont">{question.question}</div>
       <div style={s.answers}>
           {
             question.answers.map((answer, i) => (
