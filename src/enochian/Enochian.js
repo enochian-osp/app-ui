@@ -13,6 +13,7 @@ import { Route } from 'react-router-dom'
 //import aethyrs from './enochian/30aethyrs.jpg';
 import orationThumb from './img/oration-thumb.jpg';
 import firstKey from './img/enochianFirstKey.png';
+import enochianAbc from './img/enochianAbc.png';
 
 const tileData = [
   {
@@ -24,6 +25,11 @@ const tileData = [
     img: firstKey,
     title: 'Keys / Calls',
     to: 'keys'
+  },
+  {
+    img: enochianAbc,
+    title: 'Practice ABC',
+    to: 'abc'
   },
 ];
 
