@@ -1,4 +1,6 @@
 {
+  "name": "enochian-app-ui",
+  "alias": "enochian.app",
   "type": "static",
   "static": {
     "rewrites": [
