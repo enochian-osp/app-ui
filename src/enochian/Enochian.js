@@ -31,6 +31,11 @@ const tileData = [
     title: 'Practice ABC',
     to: 'abc'
   },
+  {
+    img: null,
+    title: 'Dictionary',
+    to: 'dictionary'
+  },
 ];
 
 const styles = theme => ({
