@@ -115,9 +115,14 @@ class AbcController extends Component {
     };
 
     nextQuestion() {
+      const set = 'english';
+      let question = prepareQuestion(set), current = this.state.question;
+      while (question.question === current.question)
+        question = prepareQuestion(set);
+
       this.setState({
+        question,
         submittedAnswer: null,
-        question: prepareQuestion('english'),
       });
     }
 
