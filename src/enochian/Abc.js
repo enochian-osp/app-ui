@@ -18,10 +18,21 @@ const s = {
     marginLeft: '20px',
     marginRight: '20px'
   },
-  letter: {
-    fontSize: '400%',
-    textAlign: 'center',
+  score: {
+    textAlign: 'right',
+    marginRight: '20px',
+  },
+  letterDiv: {
     padding: '20px',
+    textAlign: 'center',
+    marginBottom: '20px',
+  },
+  letterSpan: {
+    fontSize: '500%',
+    padding: '25px 50px 25px 50px',
+    border: '1px solid #aaa',
+    background: '#f0f0f0',
+    borderRadius: '5px',
   },
   questionBox: {
     padding: '20px',
@@ -47,6 +58,7 @@ answerSets.forEach(setName => {
     allAnswers: lettersArray.map(x => x[setName]),
   };
 });
+console.log(sets.english)
 
 // Durstenfeld shuffle algorithm, https://stackoverflow.com/a/12646864/1839099
 function shuffleArray(array) {
@@ -61,7 +73,9 @@ function prepareQuestion(setName) {
   shuffleArray(set.answerPairs);
   const question = set.answerPairs[0];
   shuffleArray(set.allAnswers);
-  const answers = set.allAnswers.slice(0,3).concat(question.a);
+  const answers = set.allAnswers.slice(0,4);
+  if (!answers.includes(question.a))
+    answers.pop() && answers.push(question.a);
   shuffleArray(answers);
 
   return {
@@ -71,26 +85,100 @@ function prepareQuestion(setName) {
   };
 }
 
-console.log(sets);
-
 class AbcController extends Component {
 
     constructor() {
       super();
       this.state = {
+        total: 0,
+        correct: 0,
         question: prepareQuestion('english')
       };
     }
 
+    submitAnswer = submittedAnswer => {
+      const correctAnswer = this.state.question.answer;
+      const oldAnswer = this.state.submittedAnswer;
+      this.setState({ submittedAnswer });
+
+      if (submittedAnswer === correctAnswer) {
+        this.setState({
+          total: this.state.total + 1,
+          correct: this.state.correct + (oldAnswer ? 0 : 1),
+        });
+        window.setTimeout(() => {
+          this.nextQuestion();
+        }, 200);
+      } else {
+        console.log('wrong');
+      }
+    };
+
     nextQuestion() {
-      this.setState({ question: prepareQuestion('english') });
+      this.setState({
+        submittedAnswer: null,
+        question: prepareQuestion('english'),
+      });
     }
 
     render() {
+      const { question, correct, total, submittedAnswer } = this.state;
+
       return (
-        <Abc question={this.state.question} />
+        <div>
+          <AppBar navPos={null/*navPos*/} title="Practice ABC" />
+
+          <div style={s.score}>{total ? correct + ' / ' + total : 'Go!'}</div>
+
+          <div style={s.questionBox}>
+            <div style={s.letterDiv}>
+              <span style={s.letterSpan} className="enochianFont">{question.question}</span>
+            </div>
+            <div style={s.answers}>
+                {
+                  question.answers.map((answer, i) => (
+                    <Answer key={i} answer={answer}
+                      correctAnswer={question.answer}
+                      submittedAnswer={submittedAnswer}
+                      submitAnswer={this.submitAnswer}
+                    />
+                  ))
+                }
+            </div>
+          </div>
+
+        </div>
       );
     }
+}
+
+class AnswerUnstyled extends Component {
+
+  onClick = (event) => {
+    this.props.submitAnswer(this.props.answer);
+  }
+
+  render() {
+    const { classes, answer, correctAnswer, submittedAnswer } = this.props;
+    let style;
+    if (submittedAnswer) {
+      if (answer === correctAnswer)
+        style = { background: 'green' };
+      else if (answer === submittedAnswer)
+        style = { background: 'red' };
+    }
+
+    return (
+      <Button
+          variant="contained"
+          className={classes.button}
+          style={style}
+          onClick={this.onClick}>
+        {answer}
+      </Button>
+    )
+  }
+
 }
 
 const styles = theme => ({
@@ -104,26 +192,6 @@ const styles = theme => ({
   },
 });
 
-const AbcUnstyled = ({ question, classes }) => (
-  <div>
-    <AppBar navPos={null/*navPos*/} title="Practice ABC" />
-
-    <div style={s.questionBox}>
-      <div style={s.letter} className="enochianFont">{question.question}</div>
-      <div style={s.answers}>
-          {
-            question.answers.map((answer, i) => (
-                <Button key={i} variant="contained" className={classes.button}>
-                  {answer}
-                </Button>
-            ))
-          }
-      </div>
-    </div>
-
-  </div>
-);
-
-const Abc = withStyles(styles)(AbcUnstyled);
+const Answer = withStyles(styles)(AnswerUnstyled);
 
 export default AbcController;
