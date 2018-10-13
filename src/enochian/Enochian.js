@@ -14,6 +14,7 @@ import { Route } from 'react-router-dom'
 import orationThumb from './img/oration-thumb.jpg';
 import firstKey from './img/enochianFirstKey.png';
 import enochianAbc from './img/enochianAbc.png';
+import dictionaryImg from './img/dictionary.jpg';
 
 const tileData = [
   {
@@ -32,7 +33,7 @@ const tileData = [
     to: 'abc'
   },
   {
-    img: null,
+    img: dictionaryImg,
     title: 'Dictionary',
     to: 'dictionary'
   },
