@@ -11,3 +11,9 @@
   direction: rtl;
   unicode-bidi: bidi-override;
 }
+
+.enochianFontDesc * {
+  font-family: enochianplain !important;
+  direction: rtl;
+  unicode-bidi: bidi-override;
+}
