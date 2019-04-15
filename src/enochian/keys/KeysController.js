@@ -280,4 +280,5 @@ class KeysController extends React.Component {
   }
 };
 
+export { addDigitsUntil };
 export default KeysController;
