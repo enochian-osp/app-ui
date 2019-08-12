@@ -3,13 +3,13 @@ import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
-import AppBar from '../AppBar';
+import AppBar from '../../AppBar';
 
-import './enochianFont.js';
-import letters from './enochian-data/letters.json';
+import '../enochianFont.js';
+import letters from '../enochian-data/letters.json';
 
 const navPos = [
-  { text: 'Enochian', to: '/enochian' }
+  { text: 'Practice', to: '/learn' }
 ];
 
 const s = {
@@ -37,14 +37,6 @@ const s = {
   questionBox: {
     padding: '20px',
   },
-  answerOption: {
-    border: '1px solid #aaa',
-    marginBottom: '5px',
-    paddingLeft: '10px',
-    paddingTop: '5px',
-    paddingBottom: '5px',
-  }
-
 }
 
 const sets = {};
@@ -85,7 +77,7 @@ function prepareQuestion(setName) {
   };
 }
 
-class AbcController extends Component {
+class PracticeController extends Component {
 
     constructor() {
       super();
@@ -131,31 +123,37 @@ class AbcController extends Component {
 
       return (
         <div>
-          <AppBar navPos={null/*navPos*/} title="Practice ABC" />
+          <AppBar navPos={navPos} title="ABC" />
 
           <div style={s.score}>{total ? correct + ' / ' + total : 'Go!'}</div>
 
-          <div style={s.questionBox}>
-            <div style={s.letterDiv}>
-              <span style={s.letterSpan} className="enochianFont">{question.question}</span>
-            </div>
-            <div style={s.answers}>
-                {
-                  question.answers.map((answer, i) => (
-                    <Answer key={i} answer={answer}
-                      correctAnswer={question.answer}
-                      submittedAnswer={submittedAnswer}
-                      submitAnswer={this.submitAnswer}
-                    />
-                  ))
-                }
-            </div>
-          </div>
+          <QuestionBox question={question}
+            submitAnswer={this.submitAnswer}
+            submittedAnswer={submittedAnswer} />
 
         </div>
       );
     }
 }
+
+const QuestionBox = ({ question, submitAnswer, submittedAnswer }) => (
+  <div style={s.questionBox}>
+    <div style={s.letterDiv}>
+      <span style={s.letterSpan} className="enochianFont">{question.question}</span>
+    </div>
+    <div style={s.answers}>
+        {
+          question.answers.map((answer, i) => (
+            <Answer key={i} answer={answer}
+              correctAnswer={question.answer}
+              submittedAnswer={submittedAnswer}
+              submitAnswer={submitAnswer}
+            />
+          ))
+        }
+    </div>
+  </div>
+);
 
 class AnswerUnstyled extends Component {
 
@@ -199,4 +197,5 @@ const styles = theme => ({
 
 const Answer = withStyles(styles)(AnswerUnstyled);
 
-export default AbcController;
+export default PracticeController;
+export { QuestionBox };

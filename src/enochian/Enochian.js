@@ -29,8 +29,8 @@ const tileData = [
   },
   {
     img: enochianAbc,
-    title: 'Practice ABC',
-    to: 'abc'
+    title: 'Learn',
+    to: 'learn'
   },
   {
     img: dictionaryImg,
