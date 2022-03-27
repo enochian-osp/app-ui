@@ -57,19 +57,23 @@ const Layouts = {
     </Typography>
   ),
 
-  enochian: ({ Key, enochianFont, selectKey, selectedKey }) => (
-    <Typography variant="body1"  style={s.keyParagraph} className='enochianFont'>
-      {
-        Key.subkeys.map(subkey => (
-          <span
-              style={selectedKey.key===Key.key&&selectedKey.subkey===subkey.subkey?s.selectedKey:null}
-              key={subkey.subkey}
-              onClick={selectKey(Key.key,subkey.subkey)}
-            >{subkey.enochianLatin} </span>
-        ))
-      }
-    </Typography>
-  ),
+  enochian: ({ Key, enochianFont, selectKey, selectedKey }) => {
+    const enochianClass = enochianFont ? 'enochianFont' : null;
+    
+    return (
+      <Typography variant="body1"  style={s.keyParagraph} className={enochianClass}>
+        {
+          Key.subkeys.map(subkey => (
+            <span
+                style={selectedKey.key===Key.key&&selectedKey.subkey===subkey.subkey?s.selectedKey:null}
+                key={subkey.subkey}
+                onClick={selectKey(Key.key,subkey.subkey)}
+              >{subkey.enochianLatin} </span>
+          ))
+        }
+      </Typography>
+    )
+  },
 
 }
 
